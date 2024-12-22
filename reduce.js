@@ -6,9 +6,7 @@ const sumOf = function (numbers) {
 };
 
 // productOf([1, 2, 3, 4]) => 24
-const product = function (num1, num2) {
-  return num1 * num2;
-};
+const product = (num1, num2) => num1 * num2;
 
 const productOf = function (numbers) {
   return numbers.reduce(product, 1);
@@ -58,28 +56,47 @@ const countNegativeNumbers = function (numbers) {
 };
 
 // findSumOfEvenSquares([1, 2, 3, 4]) => 20
-const findSumOfEvenSquares = function (numbers) { };
+const findSumOfEvenSquares = function (numbers) {
+  return numbers.filter((num) => num % 2 === 0).reduce((sum, number) =>
+    sum + square(number), 0);
+};
 
 // concatenateWords(["hello", "world"]) => "helloworld"
-const concatenateWords = function (words) { };
+const concatenateWords = function (words) {
+  return words.reduce((string, word) => string + word, '');
+};
 
 // longestWord(["apple", "banana", "cherry", "kiwi"]) => "banana"
-const longestWord = function (words) { };
+const longestWord = function (words) {
+  return words.reduceRight((longest, word) =>
+    longest.length > word.length ? longest : word);
+};
 
 // shortestWord(["apple", "banana", "cherry", "kiwi"]) => "kiwi"
-const shortestWord = function (words) { };
+const shortestWord = function (words) {
+  return words.reduceRight((longest, word) =>
+    longest.length < word.length ? longest : word);
+};
 
 // joinWithComma(["apple", "banana", "cherry"]) => "apple,banana,cherry"
-const joinWithComma = function (words) { };
+const joinWithComma = function (words) {
+  return words.reduce((commaSeperated, word) => commaSeperated + "," + word);
+};
 
 // reverseWords(["hello", "world"]) => "world hello"
-const reverseWords = function (words) { };
+const reverseWords = function (words) {
+  return words.reduce((reversed, word) => word + " " + reversed);
+};
 
 // joinWordsWithSpace(["apple", "banana", "cherry"]) => "apple banana cherry"
-const joinWordsWithSpace = function (words) { };
+const joinWordsWithSpace = function (words) {
+  return words.reduce((spacedWords, word) => spacedWords + " " + word);
+};
 
 // concatenateNames(["John", "Jane", "Doe"]) => "JohnJaneDoe"
-const concatenateNames = function (names) { };
+const concatenateNames = function (names) {
+  return names.reduce((joinedNames, name) => joinedNames + name, '');
+};
 
 // countVowelsInWords(["hello", "world"]) => "eoo"
 const countVowelsInWords = function (words) { };
