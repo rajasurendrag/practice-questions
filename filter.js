@@ -5,7 +5,7 @@ const isGreater = function (threshold) {
   };
 };
 
-const compareObj = function (key, func, threshold) {
+const filterByTreshold = function (key, func, threshold) {
   const compare = func(threshold);
 
   return function (object) {
@@ -46,7 +46,7 @@ const filterLongWords = function (words) {
 
 // people older than 30 [{name: "Alice", age: 25}, {name: "Bob", age: 35}] => [{name: "Bob", age: 35}]
 const filterAdults = function (people) {
-  const comparision = compareObj("age", isGreater, 30);
+  const comparision = filterByTreshold("age", isGreater, 30);
 
   return people.filter(comparision);
 };
@@ -63,7 +63,7 @@ const filterNumbersGreaterThanTen = function (numbers) {
 
 // books with more than 200 pages [{title: "Book 1", pages: 150}, {title: "Book 2", pages: 250}] => [{title: "Book 2", pages: 250}]
 const filterLongBooks = function (books) {
-  const comparision = compareObj("pages", isGreater, 200);
+  const comparision = filterByTreshold("pages", isGreater, 200);
 
   return books.filter(comparision);
 };
@@ -75,7 +75,7 @@ const filterIncompleteProfiles = function (users) {
 
 // students with grades above 80 [{name: "John", grade: 75}, {name: "Jane", grade: 85}] => [{name: "Jane", grade: 85}]
 const filterHighGrades = function (students) {
-  const comparision = compareObj("grade", isGreater, 80);
+  const comparision = filterByTreshold("grade", isGreater, 80);
 
   return students.filter(comparision);
 };
@@ -91,7 +91,17 @@ const filterInStockProducts = function (products) {
 const filterRecentOrders = function (orders) { };
 
 // products with a price lower than the average [{name: "item1", price: 10}, {name: "item2", price: 20}, {name: "item3", price: 5}] => [{name: "item1", price: 10}, {name: "item3", price: 5}]
-const filterBelowAveragePrice = function (products) { };
+const getPrice = function (object) {
+  return object.price;
+};
+
+const sum = function (num1, num2) {
+  return num1 + num2;
+};
+
+const filterBelowAveragePrice = function (products) {
+  const averagePrice = products.map(keyVlaue).reduce(sum, 0);
+};
 
 // active users who posted in the last 7 days [{username: "alice", lastPostDate: "2024-12-01", active: true}, {username: "bob", lastPostDate: "2024-11-20", active: true}] => [{username: "alice", lastPostDate: "2024-12-01", active: true}]
 const filterRecentActiveUsers = function (users) { };

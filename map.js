@@ -71,7 +71,11 @@ const reversedStringsOf = function (strings) {
 
 // double letters of ["cat", "dog", "bat"] => ["ccaat", "ddoog", "bbaatt"]
 const doubleEveryLetter = function (string) {
-  return string.split("").map(repeat(2)).join("");
+  if (string === '') {
+    return '';
+  }
+
+  return repeat(2)(string.at(0)) + doubleEveryLetter(string.slice(1));
 };
 
 const doubleLettersOf = function (strings) {
@@ -121,10 +125,18 @@ const joinedArraysOf = function (arrayOfArrays) {
 };
 
 // repeat strings in ["hi", "bye"] => ["hihi", "byebye"]
-const repeatedStringsOf = function (strings) { };
+const repeatedStringsOf = function (strings) {
+  return strings.map(repeat(2));
+};
 
 // count vowels in ["apple", "banana", "grape"] => [2, 3, 2]
-const countVowelsOf = function (strings) { };
+const vowelCount = function () {
+
+};
+
+const countVowelsOf = function (strings) {
+  return strings.map(vowelCount);
+};
 
 // reverse arrays of [[1, 2, 3], [4, 5, 6]] => [[3, 2, 1], [6, 5, 4]]
 const reversedArraysOf = function (arrays) { };
