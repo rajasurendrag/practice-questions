@@ -5,11 +5,17 @@ const isGreater = function (threshold) {
   };
 };
 
-const compareObj = function (threshold, key, func) {
+const compareObj = function (key, func, threshold) {
   const compare = func(threshold);
 
   return function (object) {
     return compare(object[key]);
+  };
+};
+
+const isStatusTrue = function (key) {
+  return function (object) {
+    return object[key];
   };
 };
 
@@ -40,18 +46,16 @@ const filterLongWords = function (words) {
 
 // people older than 30 [{name: "Alice", age: 25}, {name: "Bob", age: 35}] => [{name: "Bob", age: 35}]
 const filterAdults = function (people) {
-  const comparision = compareObj(30, "age", isGreater);
+  const comparision = compareObj("age", isGreater, 30);
 
   return people.filter(comparision);
 };
 
 // active users [{username: "alice", active: true}, {username: "bob", active: false}] => [{username: "alice", active: true}]
-const isUserStatusActive = function (user) {
-  return user.active;
-};
-
 const filterActiveUsers = function (users) {
-  return users.filter(isUserStatusActive);
+  const userSectionToInvestigate = isStatusTrue("active");
+
+  return users.filter(userSectionToInvestigate);
 };
 
 // numbers greater than 10 [5, 12, 7, 18, 3] => [12, 18]
@@ -59,18 +63,33 @@ const filterNumbersGreaterThanTen = function (numbers) {
   return numbers.filter(isGreater(10));
 };
 
-console.log(filterNumbersGreaterThanTen([5, 12, 7, 18, 3]));
 // books with more than 200 pages [{title: "Book 1", pages: 150}, {title: "Book 2", pages: 250}] => [{title: "Book 2", pages: 250}]
-const filterLongBooks = function (books) { };
+const filterLongBooks = function (books) {
+  const comparision = compareObj("pages", isGreater, 200);
+
+  return books.filter(comparision);
+};
 
 // users with incomplete profiles [{username: "alice", profileComplete: true}, {username: "bob", profileComplete: false}] => [{username: "bob", profileComplete: false}]
-const filterIncompleteProfiles = function (users) { };
+const filterIncompleteProfiles = function (users) {
+  const userSectionToInvestigate = isStatusTrue("profileComplete");
+
+  return users.filter(invert(userSectionToInvestigate));
+};
 
 // students with grades above 80 [{name: "John", grade: 75}, {name: "Jane", grade: 85}] => [{name: "Jane", grade: 85}]
-const filterHighGrades = function (students) { };
+const filterHighGrades = function (students) {
+  const comparision = compareObj("grade", isGreater, 80);
+
+  return students.filter(comparision);
+};
 
 // products that are in stock [{product: "apple", inStock: true}, {product: "banana", inStock: false}] => [{product: "apple", inStock: true}]
-const filterInStockProducts = function (products) { };
+const filterInStockProducts = function (products) {
+  const productSectionToInvestigate = isStatusTrue("inStock");
+
+  return products.filter(productSectionToInvestigate);
+};
 
 // orders placed in the last 30 days [{orderDate: "2024-11-01"}, {orderDate: "2024-12-01"}] => [{orderDate: "2024-12-01"}]
 const filterRecentOrders = function (orders) { };
