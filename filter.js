@@ -13,7 +13,7 @@ const compareObj = function (key, func, threshold) {
   };
 };
 
-const isStatusTrue = function (key) {
+const isSectionTrue = function (key) {
   return function (object) {
     return object[key];
   };
@@ -53,7 +53,7 @@ const filterAdults = function (people) {
 
 // active users [{username: "alice", active: true}, {username: "bob", active: false}] => [{username: "alice", active: true}]
 const filterActiveUsers = function (users) {
-  const userSectionToInvestigate = isStatusTrue("active");
+  const userSectionToInvestigate = isSectionTrue("active");
 
   return users.filter(userSectionToInvestigate);
 };
@@ -72,7 +72,7 @@ const filterLongBooks = function (books) {
 
 // users with incomplete profiles [{username: "alice", profileComplete: true}, {username: "bob", profileComplete: false}] => [{username: "bob", profileComplete: false}]
 const filterIncompleteProfiles = function (users) {
-  const userSectionToInvestigate = isStatusTrue("profileComplete");
+  const userSectionToInvestigate = isSectionTrue("profileComplete");
 
   return users.filter(invert(userSectionToInvestigate));
 };
@@ -86,7 +86,7 @@ const filterHighGrades = function (students) {
 
 // products that are in stock [{product: "apple", inStock: true}, {product: "banana", inStock: false}] => [{product: "apple", inStock: true}]
 const filterInStockProducts = function (products) {
-  const productSectionToInvestigate = isStatusTrue("inStock");
+  const productSectionToInvestigate = isSectionTrue("inStock");
 
   return products.filter(productSectionToInvestigate);
 };
