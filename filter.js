@@ -1,4 +1,30 @@
 // even numbers [1, 2, 3, 4, 5] => [2, 4]
+const isGreater = function (threshold) {
+  return function (number) {
+    return number > threshold;
+  };
+};
+
+const compareObj = function (threshold, key, func) {
+  const compare = func(threshold);
+
+  return function (object) {
+    return compare(object[key]);
+  };
+};
+
+const invert = function (f) {
+  return function (...args) {
+    return !f(...args);
+  };
+};
+
+const isLengthGreater = function (threshold) {
+  return function (string) {
+    return string.length > threshold;
+  };
+};
+
 const isEven = function (number) {
   return number % 2 === 0;
 };
@@ -8,21 +34,15 @@ const filterEvenNumbers = function (numbers) {
 };
 
 // words with more than 5 letters ["apple", "banana", "kiwi", "grape"] => ["banana"]
-const isLengthGreaterThan5 = function (string) {
-  return string.length > 5;
-};
-
 const filterLongWords = function (words) {
-  return words.filter(isLengthGreaterThan5);
+  return words.filter(isLengthGreater(5));
 };
 
 // people older than 30 [{name: "Alice", age: 25}, {name: "Bob", age: 35}] => [{name: "Bob", age: 35}]
-const isPersonAnAdult = function (person) {
-  return person.age > 30;
-};
-
 const filterAdults = function (people) {
-  return people.filter(isPersonAnAdult);
+  const comparision = compareObj(30, "age", isGreater);
+
+  return people.filter(comparision);
 };
 
 // active users [{username: "alice", active: true}, {username: "bob", active: false}] => [{username: "alice", active: true}]
@@ -35,8 +55,11 @@ const filterActiveUsers = function (users) {
 };
 
 // numbers greater than 10 [5, 12, 7, 18, 3] => [12, 18]
-const filterNumbersGreaterThanTen = function (numbers) { };
+const filterNumbersGreaterThanTen = function (numbers) {
+  return numbers.filter(isGreater(10));
+};
 
+console.log(filterNumbersGreaterThanTen([5, 12, 7, 18, 3]));
 // books with more than 200 pages [{title: "Book 1", pages: 150}, {title: "Book 2", pages: 250}] => [{title: "Book 2", pages: 250}]
 const filterLongBooks = function (books) { };
 
