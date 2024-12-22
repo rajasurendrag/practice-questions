@@ -5,22 +5,44 @@ const raiseNumberTo = function (power) {
   };
 };
 
+const isGreater = function (threshold) {
+  return function (number) {
+    return number > threshold;
+  };
+};
+
 const squaresOf = function (numbers) {
   return numbers.map(raiseNumberTo(2));
 };
 
 // lengths of ["apple", "banana", "kiwi"] => [5, 6, 4]
-const lengthsOf = function (strings) { };
+const lengthsOf = function (strings) {
+  return strings.map(function (string) {
+    return string.length;
+  });
+};
 
 // uppercase of ["hello", "world"] => ["HELLO", "WORLD"]
-const uppercaseOf = function (strings) { };
+const uppercaseOf = function (strings) {
+  return strings.map(uppercaseOf);
+};
 
 // first characters of ["apple", "banana", "kiwi"] => ["a", "b", "k"]
-const firstCharactersOf = function (strings) { };
+const charAt = function (index) {
+  return function (string) {
+    return string[index];
+  };
+};
+
+const firstCharactersOf = function (strings) {
+  return strings.map(charAt(1));
+};
 
 // truth values of [0, 1, 2, 3] => [false, true, true, true]
 // Assume non-zero numbers are true, and zero is false
-const truthValuesOf = function (numbers) { };
+const truthValuesOf = function (numbers) {
+  return numbers.map(isGreater(0));
+};
 
 // reverse strings of ["hello", "world"] => ["olleh", "dlrow"]
 const reversedStringsOf = function (strings) { };
