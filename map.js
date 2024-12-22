@@ -35,7 +35,7 @@ const charAt = function (index) {
 };
 
 const firstCharactersOf = function (strings) {
-  return strings.map(charAt(1));
+  return strings.map(charAt(0));
 };
 
 // truth values of [0, 1, 2, 3] => [false, true, true, true]
