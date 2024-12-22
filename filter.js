@@ -53,9 +53,7 @@ const filterAdults = function (people) {
 
 // active users [{username: "alice", active: true}, {username: "bob", active: false}] => [{username: "alice", active: true}]
 const filterActiveUsers = function (users) {
-  const userSectionToInvestigate = isSectionTrue("active");
-
-  return users.filter(userSectionToInvestigate);
+  return users.filter(isSectionTrue("active"));
 };
 
 // numbers greater than 10 [5, 12, 7, 18, 3] => [12, 18]
@@ -72,9 +70,7 @@ const filterLongBooks = function (books) {
 
 // users with incomplete profiles [{username: "alice", profileComplete: true}, {username: "bob", profileComplete: false}] => [{username: "bob", profileComplete: false}]
 const filterIncompleteProfiles = function (users) {
-  const userSectionToInvestigate = isSectionTrue("profileComplete");
-
-  return users.filter(invert(userSectionToInvestigate));
+  return users.filter(invert(isSectionTrue("profileComplete")));
 };
 
 // students with grades above 80 [{name: "John", grade: 75}, {name: "Jane", grade: 85}] => [{name: "Jane", grade: 85}]
