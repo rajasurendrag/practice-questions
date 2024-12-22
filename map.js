@@ -162,16 +162,32 @@ const uniqueCharactersOf = function (strings) {
 const rangesOf = function (numbers) {
 };
 // capitalize first letters of ["hello world", "goodbye moon"] => ["Hello World", "Goodbye Moon"]
-const capitalizedFirstLettersOf = function (strings) { };
+const capitalize = function (string) {
+  return string.at(0).toUpperCase() + string.slice(1);
+};
+
+const capitalizedFirstLettersOf = function (strings) {
+  return strings.map((string) => string.split(" ").map(capitalize).join(" "));
+};
 
 // find word lengths in ["apple pie", "banana split"] => [[5, 3], [6, 5]]
-const wordLengthsOf = function (strings) { };
+const lengths = function (string) {
+  return string.split(" ").map((word) => word.length);
+};
+
+const wordLengthsOf = function (strings) {
+  return strings.map(lengths);
+};
 
 // flatten nested arrays of [[1, [2, 3]], [4, [5, 6]]] => [[1, 2, 3], [4, 5, 6]]
-const flattenedArraysOf = function (arrays) { };
+const flattenedArraysOf = function (arrays) {
+  return arrays.map((array) => array.flat());
+};
 
 // sort letters in ["cat", "bat", "rat"] alphabetically => ["act", "abt", "art"]
-const sortedLettersOf = function (strings) { };
+const sortedLettersOf = function (strings) {
+  return strings.map((string) => [...string].sort().join(""));
+};
 
 // wrap strings in brackets ["apple", "banana"] => ["[apple]", "[banana]"]
 const wrappedStringsOf = function (strings) { };
