@@ -11,6 +11,18 @@ const isGreater = function (threshold) {
   };
 };
 
+const splitWith = function (char) {
+  return function (string) {
+    return string.split(char);
+  };
+};
+
+const repeat = function (times) {
+  return function (string) {
+    return string.repeat(times);
+  };
+};
+
 const squaresOf = function (numbers) {
   return numbers.map(raiseNumberTo(2));
 };
@@ -45,26 +57,68 @@ const truthValuesOf = function (numbers) {
 };
 
 // reverse strings of ["hello", "world"] => ["olleh", "dlrow"]
-const reversedStringsOf = function (strings) { };
+const reverseOfString = function (string) {
+  if (string === '') {
+    return '';
+  }
+
+  return reverseOfString(string.slice(1)) + string[0];
+};
+
+const reversedStringsOf = function (strings) {
+  return strings.map(reverseOfString);
+};
 
 // double letters of ["cat", "dog", "bat"] => ["ccaat", "ddoog", "bbaatt"]
-const doubleLettersOf = function (strings) { };
+const doubleEveryLetter = function (string) {
+  return string.split("").map(repeat(2)).join("");
+};
+
+const doubleLettersOf = function (strings) {
+  return strings.map(doubleEveryLetter);
+};
 
 // boolean negation of [true, false, true] => [false, true, false]
-const negatedBooleansOf = function (booleans) { };
+const negationOf = function (boolean) {
+  return !boolean;
+};
+
+const negatedBooleansOf = function (booleans) {
+  return booleans.map(negationOf);
+};
 
 // character codes of ["a", "b", "c"] => [97, 98, 99]
 // Use the `charCodeAt` method on each string
-const charCodesOf = function (strings) { };
+const codeOf = function (char) {
+  return char.charCodeAt();
+};
+
+const charCodesOf = function (strings) {
+  return strings.map(codeOf);
+};
 
 // extract domain names from ["user1@gmail.com", "admin@yahoo.com"] => ["gmail.com", "yahoo.com"]
-const domainNamesOf = function (emails) { };
+const extractDomain = function (mail) {
+  return mail.split("@").at(-1);
+};
+
+const domainNamesOf = function (emails) {
+  return emails.map(extractDomain);
+};
 
 // split words in ["hello world", "goodbye moon"] => [["hello", "world"], ["goodbye", "moon"]]
-const splitWordsOf = function (strings) { };
+const splitWordsOf = function (strings) {
+  return strings.map(splitWith(" "));
+};
 
 // join arrays of [["a", "b"], ["c", "d"]] => ["ab", "cd"]
-const joinedArraysOf = function (arrayOfArrays) { };
+const toString = function (array) {
+  return array.join("");
+};
+
+const joinedArraysOf = function (arrayOfArrays) {
+  return arrayOfArrays.map(toString);
+};
 
 // repeat strings in ["hi", "bye"] => ["hihi", "byebye"]
 const repeatedStringsOf = function (strings) { };
