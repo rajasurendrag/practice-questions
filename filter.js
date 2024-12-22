@@ -1,10 +1,4 @@
 // even numbers [1, 2, 3, 4, 5] => [2, 4]
-const isGreater = function (threshold) {
-  return function (number) {
-    return number > threshold;
-  };
-};
-
 const isEven = function (number) {
   return number % 2 === 0;
 };
